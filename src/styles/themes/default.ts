@@ -19,6 +19,7 @@ export const defaultTheme = {
     backgroundContainer: "#FFFFFF",
     primaryTextTable: "#040D1E",
     stripe: "#eaeaea",
+    purple: "#270134",
   },
   textSizes: {
     "title-title-xg": "32px",
