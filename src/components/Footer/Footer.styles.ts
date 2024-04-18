@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.colors.purple};
@@ -7,7 +7,7 @@ export const FooterContainer = styled.footer`
   justify-content: space-between;
   padding: 100px;
   margin-top: 10%;
-  height: 350px;
+  height: 300px;
 `;
 
 export const ServiceContent = styled.div`
