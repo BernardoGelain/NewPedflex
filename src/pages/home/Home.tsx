@@ -1,11 +1,26 @@
-import { useTheme } from "@/hooks/useTheme";
+import { HomePageButton } from "./components/HomeButton/HomeButton";
+import { Header } from "./Home.styles";
+import Footer from "@/components/Footer/Footer";
+import MiddleContent from "./components/MiddleContent/MiddleContent";
 
-export default function Home() {
-  const { toggleTheme } = useTheme();
+interface HomeProps {
+  imgMapa: string;
+  nm_pedflex?: string;
+}
+
+export default function Home({ imgMapa, nm_pedflex }: HomeProps) {
   return (
     <>
-      <h1>Home</h1>
-      <button onClick={toggleTheme}>change Theme</button>
+      <Header>
+        <HomePageButton
+          title="Acesso Vendedor"
+          onClick={() => {}}
+          icon="assets/vendedorTerno.png"
+          //linkTo="adasd"
+        />
+      </Header>
+      <MiddleContent imgMapa={imgMapa} nm_pedflex={nm_pedflex} />
+      <Footer />
     </>
   );
 }
