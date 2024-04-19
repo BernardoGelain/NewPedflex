@@ -2,6 +2,7 @@ import { useTheme } from 'styled-components';
 import {
   DescriptionContent,
   HomeContainer,
+  HomeContent,
   LogoContent,
   LogoImg,
   SearchInput,
@@ -17,22 +18,24 @@ export default function HomeSearch() {
         <LogoImg src="assets/click-dismelo-logo.png" />
       </LogoContent>
 
-      <DescriptionContent>
-        Uma seleção de produtos com a cara da sua loja a um{' '}
-        <span style={{ color: theme.colors.primary, fontWeight: 600 }}>
-          click
-        </span>{' '}
-        de distância
-      </DescriptionContent>
+      <HomeContent>
+        <DescriptionContent>
+          Uma seleção de produtos com a cara da sua loja a um{' '}
+          <span style={{ color: theme.colors.primary, fontWeight: 600 }}>
+            click
+          </span>{' '}
+          de distância
+        </DescriptionContent>
 
-      <SearchInput />
+        <SearchInput />
 
-      <HomePageButton
-        size="lg"
-        title="Buscar"
-        icon="assets/lupa.png"
-        style={{ height: '60px', width: '200px' }}
-      />
+        <HomePageButton
+          size="lg"
+          title="Buscar"
+          icon="assets/lupa.png"
+          style={{ height: '60px', width: '200px' }}
+        />
+      </HomeContent>
     </HomeContainer>
   );
 }

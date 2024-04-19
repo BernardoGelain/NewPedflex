@@ -16,7 +16,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   height: ${({ size }) => (size === 'sm' ? '40px' : '50px')};
   max-width: 300px;
 
-  font-size: ${({ size }) => (size === 'sm' ? '15px' : '22px')};
+  font-size: ${({ size }) => (size === 'sm' ? '15px' : '20px')};
   font-weight: 600;
   padding: 10px 15px;
   border: 0px solid transparent;
