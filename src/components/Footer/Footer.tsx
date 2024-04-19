@@ -1,4 +1,4 @@
-import { HomePageButton } from "@/pages/home/components/HomeButton/HomeButton";
+import { HomePageButton } from '@/pages/home/components/HomeButton/HomeButton';
 import {
   FooterContainer,
   ServiceContent,
@@ -10,8 +10,9 @@ import {
   SocialMediaIcon,
   FooterButtonBox,
   BraveoBox,
-} from "./Footer.styles";
-import { useTheme } from "styled-components";
+  FootContent,
+} from './Footer.styles';
+import { useTheme } from 'styled-components';
 
 interface FooterProps {
   phone?: string | number;
@@ -27,10 +28,10 @@ interface FooterProps {
 
 export default function Footer({
   email,
-  facebook = "https://facebook.com",
+  facebook = 'https://facebook.com',
   horario,
-  instagram = "https://instagram.com",
-  linkedin = "https://linkedin.com",
+  instagram = 'https://instagram.com',
+  linkedin = 'https://linkedin.com',
   logo,
   nr_consultor,
   phone,
@@ -42,77 +43,79 @@ export default function Footer({
 
   return (
     <FooterContainer>
-      <ServiceContent>
-        <ServiceTitle>Central de atendimento</ServiceTitle>
-        <ServiceItems>
-          <WrapItem>
-            <IconFooter src="assets/phoneFooter.png" alt="icone fone" />
-            <span>(54) 996650672</span>
-          </WrapItem>
-          <WrapItem>
-            <IconFooter src="assets/icon-email.png" alt="icone email" />
-            <span>example@email.com</span>
-          </WrapItem>
-          <WrapItem>
-            <IconFooter src="assets/clock.png" alt="icone relogio" />
-            <span>Segunda à Sexta-feira</span>
-          </WrapItem>
-        </ServiceItems>
+      <FootContent>
+        <ServiceContent>
+          <ServiceTitle>Central de atendimento</ServiceTitle>
+          <ServiceItems>
+            <WrapItem>
+              <IconFooter src="assets/phoneFooter.png" alt="icone fone" />
+              <span>(54) 996650672</span>
+            </WrapItem>
+            <WrapItem>
+              <IconFooter src="assets/icon-email.png" alt="icone email" />
+              <span>example@email.com</span>
+            </WrapItem>
+            <WrapItem>
+              <IconFooter src="assets/clock.png" alt="icone relogio" />
+              <span>Segunda à Sexta-feira</span>
+            </WrapItem>
+          </ServiceItems>
 
-        <SocialMediaContent>
-          <SocialMediaIcon
-            src="assets/icon-facebook.png"
-            onClick={() => {
-              window.open();
-            }}
-            alt="icone facebook"
-          />
-          <SocialMediaIcon
-            src="assets/icon-instagram.png"
-            onClick={() => {
-              window.open();
-            }}
-            alt="icone instagram"
-          />
-          <SocialMediaIcon
-            src="assets/icon-linkedin.png"
-            onClick={() => {
-              window.open(linkedin);
-            }}
-            alt="icone linkedin"
-          />
-        </SocialMediaContent>
-      </ServiceContent>
+          <SocialMediaContent>
+            <SocialMediaIcon
+              src="assets/icon-facebook.png"
+              onClick={() => {
+                window.open(facebook);
+              }}
+              alt="icone facebook"
+            />
+            <SocialMediaIcon
+              src="assets/icon-instagram.png"
+              onClick={() => {
+                window.open(instagram);
+              }}
+              alt="icone instagram"
+            />
+            <SocialMediaIcon
+              src="assets/icon-linkedin.png"
+              onClick={() => {
+                window.open(linkedin);
+              }}
+              alt="icone linkedin"
+            />
+          </SocialMediaContent>
+        </ServiceContent>
 
-      <FooterButtonBox>
-        <HomePageButton
-          title="Fale com um consultor"
-          icon="assets/icon-whatsapp.png"
-          bgColor={theme.colors.primary}
-          size="lg"
-          onClick={() => {
-            window.open(`https://wa.me/${nr_consultor}`);
-          }}
-        />
-        <BraveoBox>
-          <img
-            src={"assets/dismelo-logo.png"}
-            width="12px"
-            height="18px"
-            alt="logo"
-            style={{ marginRight: "8px" }}
+        <FooterButtonBox>
+          <HomePageButton
+            title="Fale com um consultor"
+            icon="assets/icon-whatsapp.png"
+            bgColor={theme.colors.primary}
+            size="lg"
+            onClick={() => {
+              window.open(`https://wa.me/${nr_consultor}`);
+            }}
           />
-          <span style={{ color: theme.colors.input, whiteSpace: "nowrap" }}>
-            é uma empresa grupo
-          </span>
-          <img
-            src="assets/braveo-logo.png"
-            alt="logoBraveo"
-            width="25px"
-            height="50px"
-          />
-        </BraveoBox>
-      </FooterButtonBox>
+          <BraveoBox>
+            <img
+              src={'assets/dismelo-logo.png'}
+              width="12px"
+              height="18px"
+              alt="logo"
+              style={{ marginRight: '8px' }}
+            />
+            <span style={{ color: theme.colors.input, whiteSpace: 'nowrap' }}>
+              é uma empresa grupo
+            </span>
+            <img
+              src="assets/braveo-logo.png"
+              alt="logoBraveo"
+              width="25px"
+              height="50px"
+            />
+          </BraveoBox>
+        </FooterButtonBox>
+      </FootContent>
     </FooterContainer>
   );
 }

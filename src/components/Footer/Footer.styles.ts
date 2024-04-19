@@ -4,10 +4,26 @@ export const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.colors.purple};
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  padding: 100px;
+  justify-content: center;
+  //padding: 100px;
   margin-top: 10%;
   height: 300px;
+
+  @media (max-width: 490px) {
+    height: 420px;
+  }
+`;
+
+export const FootContent = styled.div`
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+
+  @media (max-width: 490px) {
+    flex-direction: column;
+    gap: 20px;
+    padding: 50px 0;
+  }
 `;
 
 export const ServiceContent = styled.div`
@@ -18,8 +34,6 @@ export const ServiceContent = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 16px;
-
-  width: 50%;
 
   color: ${({ theme }) => theme.colors.input};
 `;
@@ -63,7 +77,6 @@ export const FooterButtonBox = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  margin-right: 100px;
 `;
 
 export const BraveoBox = styled.div`
@@ -71,4 +84,9 @@ export const BraveoBox = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 690px) {
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
