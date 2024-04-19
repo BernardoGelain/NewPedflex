@@ -5,11 +5,11 @@ import {
   HomeContent,
   LogoContent,
   LogoImg,
-  SearchInput,
 } from './HomeSearch.styles';
-import { HomePageButton } from '../HomeButton/HomeButton';
+import { HomePageButton } from '../../../../components/HomeButton/HomeButton';
 import React from 'react';
 import { cpfMask, cnpjMask } from '@/lib/masks';
+import HomeSearchInput from '@/components/HomeSearchInput/HomeSearchInput';
 
 export default function HomeSearch() {
   const [cnpj, setCnpj] = React.useState('');
@@ -38,7 +38,7 @@ export default function HomeSearch() {
           de distância
         </DescriptionContent>
 
-        <SearchInput
+        <HomeSearchInput
           placeholder="Informe seu CPF/CNPJ para ver as ofertas"
           value={maskedInput(cnpj)}
           onChange={(e) => setCnpj(e.target.value)}

@@ -1,4 +1,4 @@
-import { HomePageButton } from './components/HomeButton/HomeButton';
+import { HomePageButton } from '../../components/HomeButton/HomeButton';
 import { Header } from './Home.styles';
 import Footer from '@/components/Footer/Footer';
 import MiddleContent from './components/MiddleContent/MiddleContent';

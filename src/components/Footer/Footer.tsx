@@ -1,4 +1,4 @@
-import { HomePageButton } from '@/pages/home/components/HomeButton/HomeButton';
+import { HomePageButton } from '@/components/HomeButton/HomeButton';
 import {
   FooterContainer,
   ServiceContent,
