@@ -22,7 +22,9 @@ export default function Home({ imgMapa, nm_pedflex }: HomeProps) {
       </Header>
 
       <HomeSearch />
+
       <MiddleContent imgMapa={imgMapa} nm_pedflex={nm_pedflex} />
+
       <Footer />
     </>
   );
