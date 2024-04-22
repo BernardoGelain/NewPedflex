@@ -1,3 +1,4 @@
+
 import { HomePageButton } from '../../components/HomeButton/HomeButton';
 import { Header } from './Home.styles';
 import Footer from '@/components/Footer/Footer';
@@ -26,6 +27,7 @@ export default function Home({ imgMapa, nm_pedflex }: HomeProps) {
       <MiddleContent imgMapa={imgMapa} nm_pedflex={nm_pedflex} />
 
       <Footer />
+
     </>
   );
 }
