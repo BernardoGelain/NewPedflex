@@ -13,10 +13,10 @@ import {
   MapText,
   MapTextDefault,
   StyledText,
-} from "./MiddleContent.styles";
+} from './MiddleContent.styles';
 
 interface MiddleContentProps {
-  imgMapa: string;
+  imgMapa?: string;
   nm_pedflex?: string;
 }
 
@@ -29,20 +29,20 @@ export default function MiddleContent({
       <HowItWorksContainer>
         <HowItWorksContent>
           <ContainerTitle>
-            Como funciona o{" "}
-            <GreenText>{nm_pedflex ? nm_pedflex : "Pedflex"}</GreenText> ?
+            Como funciona o{' '}
+            <GreenText>{nm_pedflex ? nm_pedflex : 'Pedflex'}</GreenText> ?
           </ContainerTitle>
         </HowItWorksContent>
         <ContentItens>
           <ItemBox>
             <img
               src="assets/caixa-oniz.png"
-              style={{ width: "150px" }}
+              style={{ width: '150px' }}
               alt="Ícone vendedor"
             />
 
             <ItemTitle>
-              Como funciona o {nm_pedflex ? nm_pedflex : "Pedflex"}?
+              Como funciona o {nm_pedflex ? nm_pedflex : 'Pedflex'}?
             </ItemTitle>
             <ItemText>
               Nossos times de vendas enviam para o seu whatsApp um mix especial
@@ -54,7 +54,7 @@ export default function MiddleContent({
           <ItemBox>
             <img
               src="assets/icon-rocket.png"
-              style={{ width: "150px" }}
+              style={{ width: '150px' }}
               alt="Ícone foguete"
             />
 
@@ -68,7 +68,7 @@ export default function MiddleContent({
           <ItemBox>
             <img
               src="assets/icon-login.png"
-              style={{ width: "150px" }}
+              style={{ width: '150px' }}
               alt="Ícone de login"
             />
 
