@@ -1,3 +1,4 @@
+
 import Footer from '@/components/Footer/Footer';
 import MiddleContent from './components/MiddleContent/MiddleContent';
 import HomeSearch from './components/HomeSearch/HomeSearch';
@@ -15,6 +16,7 @@ export default function Home({ imgMapa, nm_pedflex }: HomeProps) {
       <MiddleContent imgMapa={imgMapa} nm_pedflex={nm_pedflex} />
 
       <Footer />
+
     </>
   );
 }
