@@ -38,11 +38,13 @@ export default function HomeSearch() {
           de distância
         </DescriptionContent>
 
-        <HomeSearchInput
-          placeholder="Informe seu CPF/CNPJ para ver as ofertas"
-          value={maskedInput(cnpj)}
-          onChange={(e) => setCnpj(e.target.value)}
-        />
+        <div style={{ width: '80%' }}>
+          <HomeSearchInput
+            placeholder="Informe seu CPF/CNPJ para ver as ofertas"
+            value={maskedInput(cnpj)}
+            onChange={(e) => setCnpj(e.target.value)}
+          />
+        </div>
 
         <HomePageButton
           size="lg"
