@@ -7,7 +7,6 @@ export default function Routes() {
     <BrowserRouter>
       <RRDRouter>
         <Route path="/" element={<Home />} />
-        <Route path="/acesso-vendedor" element={<HomeSeller />} />
       </RRDRouter>
     </BrowserRouter>
   );
