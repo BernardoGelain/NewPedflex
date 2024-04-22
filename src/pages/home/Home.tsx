@@ -1,35 +1,33 @@
-import { useTheme } from "@/hooks/useTheme";
-import { removeTest, test } from "@/lib/redux/reducers/cartReducer";
-import { RootState } from "@/models/RootState";
-import { useDispatch, useSelector } from "react-redux";
 
-export default function Home() {
-  const { toggleTheme } = useTheme();
+import { HomePageButton } from '../../components/HomeButton/HomeButton';
+import { Header } from './Home.styles';
+import Footer from '@/components/Footer/Footer';
+import MiddleContent from './components/MiddleContent/MiddleContent';
+import HomeSearch from './components/HomeSearch/HomeSearch';
 
-  const dispatch: any = useDispatch();
+interface HomeProps {
+  imgMapa: string;
+  nm_pedflex?: string;
+}
 
-  const handleAddTest = () => {
-    const testDispatch = 1;
-
-    dispatch(test({ testDispatch }));
-  };
-  const handleRemoveTest = () => {
-    dispatch(removeTest({}));
-  };
-
-  const reduxValue = useSelector((state: RootState) => state.cart.testState);
-
-  const logValue = () => {
-    console.log(reduxValue);
-  };
+export default function Home({ imgMapa, nm_pedflex }: HomeProps) {
   return (
     <>
-      <h1>Home</h1>
+      <Header>
+        <HomePageButton
+          title="Acesso Vendedor"
+          onClick={() => {}}
+          icon="assets/vendedorTerno.png"
+          //linkTo="adasd"
+        />
+      </Header>
 
-      <button onClick={toggleTheme}>change Theme</button>
-      <button onClick={handleAddTest}>Add Test Redux</button>
-      <button onClick={handleRemoveTest}>Remove Test Reduxe</button>
-      <button onClick={logValue}>Print in console Redux state value</button>
+      <HomeSearch />
+
+      <MiddleContent imgMapa={imgMapa} nm_pedflex={nm_pedflex} />
+
+      <Footer />
+
     </>
   );
 }
