@@ -1,4 +1,4 @@
-import { HomePageButton } from '@/components/HomeButton/HomeButton';
+import { HomePageButton } from "@/components/HomeButton/HomeButton";
 import {
   FooterContainer,
   ServiceContent,
@@ -11,8 +11,8 @@ import {
   FooterButtonBox,
   BraveoBox,
   FootContent,
-} from './Footer.styles';
-import { useTheme } from 'styled-components';
+} from "./Footer.styles";
+import { useTheme } from "styled-components";
 
 interface FooterProps {
   phone?: string | number;
@@ -28,18 +28,16 @@ interface FooterProps {
 
 export default function Footer({
   email,
-  facebook = 'https://facebook.com',
+  facebook = "https://facebook.com",
   horario,
-  instagram = 'https://instagram.com',
-  linkedin = 'https://linkedin.com',
+  instagram = "https://instagram.com",
+  linkedin = "https://linkedin.com",
   logo,
   nr_consultor,
   phone,
   site,
 }: FooterProps) {
   const theme = useTheme();
-
-  console.log(theme);
 
   return (
     <FooterContainer>
@@ -98,13 +96,13 @@ export default function Footer({
           />
           <BraveoBox>
             <img
-              src={'assets/dismelo-logo.png'}
+              src={"assets/dismelo-logo.png"}
               width="12px"
               height="18px"
               alt="logo"
-              style={{ marginRight: '8px' }}
+              style={{ marginRight: "8px" }}
             />
-            <span style={{ color: theme.colors.input, whiteSpace: 'nowrap' }}>
+            <span style={{ color: theme.colors.input, whiteSpace: "nowrap" }}>
               é uma empresa grupo
             </span>
             <img
