@@ -1,8 +1,21 @@
-import { styled } from 'styled-components';
+import { DefaultTheme, styled } from 'styled-components';
 
 type ButtonContainerProps = {
   bgColor?: string;
   size?: string;
+  variant?: string;
+  fullWidth?: boolean;
+};
+
+const handleButtonBackground = ({
+  theme,
+  bgColor,
+  variant,
+}: ButtonContainerProps & { theme: DefaultTheme }): string => {
+  if (variant == 'outlined') {
+    return 'transparent';
+  }
+  return bgColor ? bgColor : theme.colors.purple;
 };
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
@@ -11,17 +24,17 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.input};
+  color: ${({ theme }) => theme.colors.background};
   min-width: 150px;
-  height: ${({ size }) => (size === 'sm' ? '40px' : '50px')};
-  max-width: 300px;
+  height: ${({ size }) => (size === 'sm' ? '44px' : '50px')};
+  max-width: ${({ fullWidth }) => (fullWidth ? '100%' : '300px|')};
 
   font-size: ${({ size }) => (size === 'sm' ? '15px' : '20px')};
   font-weight: 600;
-  padding: 10px 15px;
-  border: 0px solid transparent;
-  background-color: ${({ theme, bgColor }) =>
-    bgColor ? bgColor : theme.colors.purple};
+  padding: 12px 15px;
+  border: ${({ variant, theme }) =>
+    variant == 'outlined' ? `1px solid ${theme.colors.background}` : 'none'};
+  background-color: ${handleButtonBackground};
   border-radius: 25px;
   transition: all 0.2s ease-in;
 
