@@ -8,6 +8,7 @@ import {
 import { useTheme } from "@/hooks/useTheme";
 import { removeTest, test } from "@/lib/redux/reducers/cartReducer";
 import { RootState } from "@/models/RootState";
+import { AxiosError } from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -86,7 +87,7 @@ export default function Example() {
             alert("update com sucesso");
           },
           onError: (err) => {
-            console.log(err.response.status);
+            console.log((err as AxiosError).response?.status);
             alert("erro ao update " + err);
           },
         }
