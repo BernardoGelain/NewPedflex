@@ -16,7 +16,32 @@ const api = axios.create({
 });
 
 const fetchPosts = async (): Promise<PostType[]> => {
-  const res = await api.get("/posts");
+  const res = await api.get(`/posts`);
+
+  return res.data;
+};
+
+const createPost = async (post: PostType) => {
+  const res = await api.post("/posts", post);
+
+  return res.data;
+};
+
+const fetchPost = async (id: number | null): Promise<PostType> => {
+  const res = await api.get(`/posts/${id}`);
+
+  return res.data;
+};
+
+const deletePost = async (id: number) => {
+  const res = await api.delete(`/posts/${id}`);
+
+  return res.data;
+};
+
+const updatePost = async ({ id, post }: { id: number; post: PostType }) => {
+  console.log("aaa", id);
+  const res = await api.put(`/posts/${id}`, post);
 
   return res.data;
 };
@@ -33,10 +58,17 @@ export const useFetchPosts = () => {
   return { postsData: data, isPostsLoading: isLoading };
 };
 
-const createPost = async (post: PostType) => {
-  const res = await api.post("/posts", post);
+export const useFetchPost = (id: number | null) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["posts", id],
+    queryFn: () => fetchPost(id),
+    enabled: !!id,
+    select: (data) => {
+      return data;
+    },
+  });
 
-  return res.data;
+  return { postData: data, isPostLoading: isLoading };
 };
 
 export const useCreatePost = () => {
@@ -51,4 +83,30 @@ export const useCreatePost = () => {
   });
 
   return { createPost: mutate, ...rest };
+};
+
+export const useDeletePost = () => {
+  const queryClient = useQueryClient();
+  const { mutate, ...rest } = useMutation({
+    mutationKey: ["posts"],
+    mutationFn: deletePost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+
+  return { deletePost: mutate, ...rest };
+};
+
+export const useUpdatePost = () => {
+  const queryClient = useQueryClient();
+  const { mutate, ...rest } = useMutation({
+    mutationKey: ["posts"],
+    mutationFn: updatePost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+
+  return { updatePost: mutate, ...rest };
 };
