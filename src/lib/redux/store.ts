@@ -33,4 +33,6 @@ export const store = configureStore({
 
 //Criação do persistor usado em App
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+
 export const persistor = persistStore(store);
