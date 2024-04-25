@@ -1,21 +1,23 @@
+import React from "react";
 import {
   useCreatePost,
   useDeletePost,
   useFetchPost,
   useFetchPosts,
   useUpdatePost,
-} from "@/hooks/usePostsData";
+} from "@/services/posts";
+
 import { useTheme } from "@/hooks/useTheme";
 import { removeTest, test } from "@/lib/redux/reducers/cartReducer";
-import { RootState } from "@/models/RootState";
 import { AxiosError } from "axios";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/hooks/useReduxHooks";
 
 export default function Example() {
   const { toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
-  const dispatch: any = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleAddTest = () => {
     const testDispatch = 1;
@@ -26,7 +28,7 @@ export default function Example() {
     dispatch(removeTest({}));
   };
 
-  const reduxValue = useSelector((state: RootState) => state.cart.testState);
+  const reduxValue = useAppSelector((state) => state.cart.testState);
 
   const logValue = () => {
     console.log(reduxValue);
@@ -81,7 +83,7 @@ export default function Example() {
       };
 
       updatePost(
-        { id: 0, post },
+        { id, post },
         {
           onSuccess: () => {
             alert("update com sucesso");
@@ -108,6 +110,7 @@ export default function Example() {
       <button onClick={handleAddTest}>Add Test Redux</button>
       <button onClick={handleRemoveTest}>Remove Test Reduxe</button>
       <button onClick={logValue}>Print in console Redux state value</button>
+      <button onClick={() => navigate("/teste")}>navigate</button>
 
       <div style={{ marginBottom: "30px" }} />
       <button onClick={handleCreatePost}>Create post</button>
