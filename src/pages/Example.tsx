@@ -36,9 +36,11 @@ export default function Example() {
 
   //----------------------------//
 
-  const [id, setId] = React.useState<number | null>(null);
+  const [id, setId] = React.useState<number>();
 
-  const { isPostsLoading, postsData } = useFetchPosts();
+  const { isPostsLoading, postsData, setFetchPostsFilters } = useFetchPosts({
+    postId: 100,
+  });
 
   const { postData } = useFetchPost(id);
 
@@ -116,7 +118,12 @@ export default function Example() {
       <button onClick={handleCreatePost}>Create post</button>
 
       <button
-        onClick={() => setId(Number(Number(Math.random()).toFixed(1)) * 10)}
+        onClick={() =>
+          setFetchPostsFilters((current) => ({
+            ...current,
+            search: "ahsudhsauydh",
+          }))
+        }
       >
         Fetch post
       </button>
@@ -142,7 +149,7 @@ export default function Example() {
           <b>{postData?.title ?? ""}</b>
         </li>
         {postsData?.map((it) => (
-          <li>{it.title}</li>
+          <li>{it.body}</li>
         ))}
       </ul>
     </div>
