@@ -17,9 +17,10 @@ const fetchPosts = async (filters?: FetchPostsFilters): Promise<PostType[]> => {
   return res.data;
 };
 
-export const useFetchPosts = (initialFilters: FetchPostsFilters) => {
-  const [filters, setFilters] =
-    React.useState<FetchPostsFilters>(initialFilters);
+export const useFetchPosts = (initialFilters?: FetchPostsFilters) => {
+  const [filters, setFilters] = React.useState<FetchPostsFilters | undefined>(
+    initialFilters
+  );
 
   const { data, isLoading } = useQuery({
     queryKey: ["posts", filters],
