@@ -17,3 +17,17 @@ export const cnpjMask = (value: string) => {
     .replace(/(\d{4})(\d)/, '$1-$2')
     .replace(/(-\d{2})\d+?$/, '$1');
 };
+
+export const cpfCnpjMask = (value: string) => {
+  if (value.length <= 14) return cpfMask(value);
+
+  return cnpjMask(value);
+};
+
+export const masks = {
+  cpf: cpfMask,
+  cnpj: cnpjMask,
+  cpfCnpj: cpfCnpjMask,
+};
+
+export type MasksType = keyof typeof masks;
