@@ -12,6 +12,7 @@ import { removeTest, test } from "@/lib/redux/reducers/cartReducer";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/hooks/useReduxHooks";
+import { TextInput } from "@/components/TextInput/TextInput";
 
 export default function Example() {
   const { toggleTheme } = useTheme();
@@ -104,9 +105,16 @@ export default function Example() {
 
   console.log("pending", isPending);
 
+  const [value, setValue] = React.useState("");
+  console.log(value);
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Example</h1>
+
+      <div style={{ margin: "20px" }}>
+        <TextInput mask="cpfCnpj" value={value} setValue={setValue} />
+      </div>
 
       <button onClick={toggleTheme}>change Theme</button>
       <button onClick={handleAddTest}>Add Test Redux</button>
