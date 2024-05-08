@@ -1,20 +1,39 @@
-import React from "react";
-import { useCalculateTest } from "@/hooks/useCalculateTest";
-import { useFetchPosts } from "@/services/posts";
+import { useFetchPosts } from '@/services/posts';
+import ModalDialog from '@/components/ModalDialog/ModalDialog';
+import { useModalDialog } from '@/hooks/useModalDialog';
+import { HomePageButton } from '@/components/HomeButton/HomeButton';
 
 export function Teste() {
-  const test = useCalculateTest();
+  const { setModalConfig } = useModalDialog();
 
   const { postsData } = useFetchPosts();
 
   return (
     <div>
-      {" "}
-      <ul style={{ listStyleType: "circle", listStyle: "inside" }}>
-        {postsData?.map((it) => (
-          <li>{it.title}</li>
+      {' '}
+      <HomePageButton
+        title="Abrir modal"
+        onClick={() =>
+          setModalConfig({
+            open: true,
+            title: 'Modal exemplo',
+          })
+        }
+      />
+      <ul
+        style={{
+          listStyleType: 'circle',
+          listStyle: 'inside',
+          paddingLeft: '10px',
+        }}
+      >
+        {postsData?.map(() => (
+          <li>{'titulo'}</li>
         ))}
       </ul>
+      <ModalDialog onClose={() => {}} open={true} title="Escolha uma base">
+        <div>div</div>
+      </ModalDialog>
     </div>
   );
 }

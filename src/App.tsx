@@ -1,10 +1,11 @@
-import { PersistGate } from "redux-persist/integration/react";
-import { ThemeContextProvider } from "./contexts/themeContext";
-import Routes from "./routes/Routes";
-import { persistor, store } from "./lib/redux/store";
-import { Provider } from "react-redux";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./lib/react-query/queryClient";
+import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeContextProvider } from './contexts/themeContext';
+import Routes from './routes/Routes';
+import { persistor, store } from './lib/redux/store';
+import { Provider } from 'react-redux';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './lib/react-query/queryClient';
+import { ModalContextProvider } from './contexts/modalContext';
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <Provider store={store}>
           <ThemeContextProvider>
-            <Routes />
+            <ModalContextProvider>
+              <Routes />
+            </ModalContextProvider>
           </ThemeContextProvider>
         </Provider>
       </PersistGate>
