@@ -33,9 +33,7 @@ const ModalDialog: React.FC<ModalDialogProps> = ({
             <h3>{title || 'Modal'}</h3>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {/* <IconButton onClick={onClose}>
-              <FaTimes size="20px" />
-            </IconButton> */}
+            <IconButton onClick={closeModal}>X</IconButton>
           </div>
         </div>
         <div>{children}</div>
