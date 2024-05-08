@@ -35,7 +35,7 @@ export default function Example() {
     console.log(reduxValue);
   };
 
-  //----------------------------//
+  //---------------------------------//
 
   const [id] = React.useState<number>();
 
