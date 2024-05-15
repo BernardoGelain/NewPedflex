@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { cartReducer } from "./reducers/cartReducer";
-import storage from "redux-persist/lib/storage";
+import { configureStore } from '@reduxjs/toolkit';
+import { cartReducer } from './cart/cartReducer';
+import storage from 'redux-persist/lib/storage';
 import {
   FLUSH,
   PAUSE,
@@ -10,10 +10,10 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from "redux-persist";
+} from 'redux-persist';
 
 const persistConfig = {
-  key: "cart", //chave principal para persistencia do estado
+  key: 'cart', //chave principal para persistencia do estado
   storage, // Configuração do armazenamento (neste caso, localStorage)
 };
 
@@ -32,7 +32,14 @@ export const store = configureStore({
 });
 
 //Criação do persistor usado em App
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+//export type AppDispatch = typeof store.dispatch;
+//export type RootState = ReturnType<typeof store.getState>;
 
 export const persistor = persistStore(store);
+
+// Get the type of our store variable
+export type AppStore = typeof store;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<AppStore['getState']>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = AppStore['dispatch'];

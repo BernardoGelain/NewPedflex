@@ -1,0 +1,1 @@
+export { useFetchProductsList } from './useFetchProductsList';
