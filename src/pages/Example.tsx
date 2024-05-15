@@ -8,7 +8,7 @@ import {
 } from '@/services/posts';
 
 import { useTheme } from '@/hooks/useTheme';
-import { removeTest, test } from '@/lib/redux/reducers/cartReducer';
+import { removeFromCart, addToCart } from '@/lib/redux/cart/cartReducer';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
@@ -23,13 +23,13 @@ export default function Example() {
   const handleAddTest = () => {
     const testDispatch = 1;
 
-    dispatch(test({ testDispatch }));
+    dispatch(addToCart({ testDispatch }));
   };
   const handleRemoveTest = () => {
-    dispatch(removeTest({}));
+    dispatch(removeFromCart({}));
   };
 
-  const reduxValue = useAppSelector((state) => state.cart.testState);
+  const reduxValue = useAppSelector((state) => state.cart.products);
 
   const logValue = () => {
     console.log(reduxValue);
