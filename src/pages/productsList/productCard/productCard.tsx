@@ -12,6 +12,9 @@ import {
   selectUnitType,
 } from '@/lib/redux/cart/cartReducer';
 
+import { formatInputCurrency } from '@/utils/validators';
+import { useCalculateTotalValue } from '@/hooks/useCalculateTotalValue';
+
 interface ProductCardProps {
   product: ProductType;
   cartInfo: CartProductInfo;
@@ -20,14 +23,19 @@ interface ProductCardProps {
 export function ProductCard({ product, cartInfo }: ProductCardProps) {
   const [unitTypeSelected, setUnitTypeSelected] =
     React.useState<UnidadesDisponiveisType>(cartInfo.unidadeSelecionada);
-
   const dispatch = useAppDispatch();
+
+  const calculatedValue = useCalculateTotalValue({
+    product,
+    cartInfo,
+    unitTypeSelected,
+  });
 
   return (
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
+        gridTemplateColumns: 'repeat(4, 1fr)',
         marginBottom: '20px',
         alignItems: 'center',
       }}
@@ -41,18 +49,19 @@ export function ProductCard({ product, cartInfo }: ProductCardProps) {
             key={unitType.cd_unidade}
             style={{
               backgroundColor:
-                unitTypeSelected?.cd_unidade == unitType.cd_unidade
+                unitTypeSelected.cd_unidade == unitType.cd_unidade
                   ? 'green'
                   : 'transparent',
             }}
-            onClick={() =>
+            onClick={() => {
+              setUnitTypeSelected(unitType);
               dispatch(
                 selectUnitType({
                   produto: product,
                   unidadeSelecionada: unitType,
                 })
-              )
-            }
+              );
+            }}
           >
             {unitType.ds_unidade}
           </button>
@@ -65,6 +74,7 @@ export function ProductCard({ product, cartInfo }: ProductCardProps) {
             dispatch(
               addToCart({
                 produto: product,
+                unidadeSelecionada: unitTypeSelected,
               })
             )
           }
@@ -79,6 +89,8 @@ export function ProductCard({ product, cartInfo }: ProductCardProps) {
           -
         </button>
       </div>
+
+      <div>{formatInputCurrency(calculatedValue)}</div>
     </div>
   );
 }
