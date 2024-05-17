@@ -4,6 +4,7 @@ import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import { addToCartAction } from './reducers/addToCart';
 import { removeFromCartAction } from './reducers/removeFromCart';
 import { selectUnitTypeAction } from './reducers/selectUnitType';
+import { updateProductTotalValueAction } from './reducers/updateProductTotalValue';
 
 export type CartSliceState = {
   produtosCarrinho: ProductType[];
@@ -25,9 +26,15 @@ const cartSlice: Slice<CartSliceState> = createSlice({
       state.condicaoPagamento = action.payload;
     },
     selectUnitType: selectUnitTypeAction,
+    updateProductTotalValue: updateProductTotalValueAction,
   },
 });
 
 export const cartReducer = cartSlice.reducer;
-export const { addToCart, removeFromCart, selectUnitType, selectPaymentType } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  selectUnitType,
+  selectPaymentType,
+  updateProductTotalValue,
+} = cartSlice.actions;
