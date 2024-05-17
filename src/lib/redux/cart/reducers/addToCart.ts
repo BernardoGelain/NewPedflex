@@ -1,10 +1,11 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { CartSliceState } from '../cartReducer';
-import { ProductType } from '@/models/ProductsList';
+import { ProductType, UnidadesDisponiveisType } from '@/models/ProductsList';
 import { findProductInCart } from '@/utils/findProductInCart';
 
 type PayloadContent = {
   produto: ProductType;
+  unidadeSelecionada: UnidadesDisponiveisType;
 };
 
 /**
@@ -17,23 +18,20 @@ export const addToCartAction = (
   state: CartSliceState,
   action: PayloadAction<PayloadContent>
 ) => {
-  const { produto } = action.payload;
+  const { produto, unidadeSelecionada } = action.payload;
 
   // verifica se o produto já está no carrinho
   const productInCart = findProductInCart(state.produtosCarrinho, produto);
-  // const cartProduct = state.produtosCarrinho.find(
-  //   (product) => product.cd_produto === produto.cd_produto
-  // );
 
-  const valorPorUnidade = produto.cartInfo.unidadeSelecionada.vl_preco_unidade;
+  //const valorPorUnidade = unidadeSelecionada.vl_preco_unidade;
 
   // se o produto já está no carrinho
   if (productInCart) {
     const newQuantidade = productInCart.cartInfo.quantidade + 1;
-    const valorTotal = valorPorUnidade * newQuantidade;
+    //const valorTotal = valorPorUnidade * newQuantidade;
 
     productInCart.cartInfo.quantidade = newQuantidade;
-    productInCart.cartInfo.valorTotal = valorTotal;
+    //productInCart.cartInfo.valorTotal = valorTotal;
     return;
   }
 
@@ -41,8 +39,9 @@ export const addToCartAction = (
     ...produto,
     cartInfo: {
       ...produto.cartInfo,
+      unidadeSelecionada,
       quantidade: 1,
-      valorTotal: valorPorUnidade,
+      //valorTotal: valorPorUnidade,
     },
   });
 };
