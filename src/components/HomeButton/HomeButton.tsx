@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ButtonContainer, ButtonIcon } from "./HomeButton.styles";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ButtonContainer, ButtonIcon } from './HomeButton.styles';
 
 interface HomePageButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,8 +10,8 @@ interface HomePageButtonProps
   handleSubmit?: () => void;
   icon?: string;
   bgColor?: string;
-  size?: "sm" | "lg";
-  variant?: "outlined" | "contained";
+  size?: 'sm' | 'lg';
+  variant?: 'outlined' | 'contained';
   fullWidth?: boolean;
 }
 
@@ -22,8 +22,8 @@ export function HomePageButton({
   icon,
   bgColor,
   fullWidth = false,
-  size = "sm",
-  variant = "contained",
+  size = 'sm',
+  variant = 'contained',
   ...rest
 }: HomePageButtonProps) {
   const StyledButton = (
@@ -35,12 +35,12 @@ export function HomePageButton({
       $fullWidth={fullWidth}
       {...rest}
     >
-      <ButtonIcon
+      {/* <ButtonIcon
         size={size}
         className="buttonIcon"
         src={icon}
         alt="icon vendedor"
-      />
+      /> */}
       <span className="buttonText">{title}</span>
     </ButtonContainer>
   );
@@ -48,7 +48,7 @@ export function HomePageButton({
   return (
     <>
       {linkTo ? (
-        <Link to={linkTo} style={{ textDecoration: "none" }}>
+        <Link to={linkTo} style={{ textDecoration: 'none' }}>
           {StyledButton}
         </Link>
       ) : (
