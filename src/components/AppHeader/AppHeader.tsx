@@ -1,7 +1,11 @@
 import { useFetchAppHeader } from '@/services/header';
 
 export function AppHeader() {
-  const {} = useFetchAppHeader();
+  const { headerData } = useFetchAppHeader();
 
-  return <div>HEADER</div>;
+  return (
+    <div>
+      <h4>HEADER</h4>
+    </div>
+  );
 }

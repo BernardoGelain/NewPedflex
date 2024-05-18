@@ -9,7 +9,7 @@ interface ModalDialogProps extends React.PropsWithChildren {
   small?: boolean;
 }
 
-const ModalDialog: React.FC<ModalDialogProps> = ({
+const ModalDialog: React.FC<React.PropsWithChildren> = ({
   children,
   small = false,
 }) => {

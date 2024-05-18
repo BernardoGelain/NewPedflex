@@ -1,4 +1,3 @@
-import React from 'react';
 import { HomePageButton } from '@/components/HomeButton/HomeButton';
 import { useFetchProductsList } from '@/services/productsList';
 import { ProductCard } from './productCard/productCard';

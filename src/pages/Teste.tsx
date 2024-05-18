@@ -31,8 +31,8 @@ export function Teste() {
           <li>{'titulo'}</li>
         ))}
       </ul>
-      <ModalDialog onClose={() => {}} open={true} title="Escolha uma base">
-        <div>div</div>
+      <ModalDialog>
+        <div>div</div>+
       </ModalDialog>
     </div>
   );
