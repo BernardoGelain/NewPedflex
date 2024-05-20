@@ -15,7 +15,7 @@ const ModalDialog: React.FC<ModalDialogProps> = ({
 }) => {
   return (
     <ModalContainer open={open}>
-      <ModalContent small={false}>
+      <ModalContent $small={false}>
         <div
           style={{
             display: 'flex',

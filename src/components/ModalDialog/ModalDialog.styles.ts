@@ -19,12 +19,12 @@ export const ModalContainer = styled.div<DisplayModal>`
 `;
 
 interface ModalSize {
-  small?: boolean;
+  $small?: boolean;
 }
 
 export const ModalContent = styled.div<ModalSize>`
   padding: 20px;
-  width: ${(props) => (props.small ? '450px' : '600px')};
+  width: ${(props) => (props.$small ? '450px' : '600px')};
   //height: 500px;
   //max-width: 600px;
   //min-width: 360px;
