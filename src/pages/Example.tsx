@@ -13,9 +13,9 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
 import { TextInput } from '@/components/TextInput/TextInput';
+import { useNotification } from '@/hooks/useToast';
 
 export default function Example() {
-  const { toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export default function Example() {
     dispatch(removeFromCart({}));
   };
 
-  const reduxValue = useAppSelector((state) => state.cart.products);
+  const reduxValue = useAppSelector((state) => state.cart.produtosCarrinho);
 
   const logValue = () => {
     console.log(reduxValue);
@@ -61,10 +61,10 @@ export default function Example() {
 
     createPost(post, {
       onSuccess: () => {
-        alert('criado com sucesso');
+        snackbar({ title: 'criado com sucesso' });
       },
       onError: () => {
-        alert('erro ao criar');
+        alert({ title: 'erro ao criar' });
       },
     });
   }, [createPost]);
@@ -89,17 +89,29 @@ export default function Example() {
         { id, post },
         {
           onSuccess: () => {
-            alert('update com sucesso');
+            snackbar({ title: 'update com sucesso' });
           },
           onError: (err) => {
             console.log((err as AxiosError).response?.status);
-            alert('erro ao update ' + err);
+            snackbar({ title: 'erro ao update ' + err });
           },
         }
       );
     },
     [updatePost]
   );
+
+  const { snackbar, alert } = useNotification();
+
+  const handleAlert = () => {
+    alert({ title: 'Sim ou não', icon: 'question' }).then((result) => {
+      console.log(result);
+      if (result.isDismissed) {
+        return snackbar({ title: 'não', icon: 'warning' });
+      }
+      return snackbar({ title: 'sim' });
+    });
+  };
 
   console.log('loading', isPostsLoading);
 
@@ -116,7 +128,7 @@ export default function Example() {
         <TextInput mask="cpfCnpj" value={value} setValue={setValue} />
       </div>
 
-      <button onClick={toggleTheme}>change Theme</button>
+      <button onClick={handleAlert}>Alert!</button>
       <button onClick={handleAddTest}>Add Test Redux</button>
       <button onClick={handleRemoveTest}>Remove Test Reduxe</button>
       <button onClick={logValue}>Print in console Redux state value</button>
