@@ -14,11 +14,11 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <Provider store={store}>
           <ThemeContextProvider>
-            <AppWrapperContextProvider>
-              <ModalContextProvider>
+            <ModalContextProvider>
+              <AppWrapperContextProvider>
                 <Routes />
-              </ModalContextProvider>
-            </AppWrapperContextProvider>
+              </AppWrapperContextProvider>
+            </ModalContextProvider>
           </ThemeContextProvider>
         </Provider>
       </PersistGate>

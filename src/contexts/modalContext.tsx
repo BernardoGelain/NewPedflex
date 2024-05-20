@@ -1,13 +1,15 @@
+import ModalDialog from '@/components/ModalDialog/ModalDialog';
 import React from 'react';
 
 type ModalProps = {
   children: React.ReactNode;
 };
 
-type ModalConfig = {
+export type ModalConfig = {
   title: string;
   open: boolean;
   values?: Record<string, any>;
+  modalContent: React.ReactNode | string | JSX.Element;
 };
 
 interface ModalContextType {
@@ -22,6 +24,8 @@ export function ModalContextProvider({ children }: ModalProps) {
   const [modalConfig, setModalConfig] = React.useState<ModalConfig>({
     open: false,
     title: '',
+    modalContent: '',
+    values: {},
   });
 
   const closeModal = () => {
@@ -29,12 +33,15 @@ export function ModalContextProvider({ children }: ModalProps) {
       open: false,
       title: '',
       values: {},
+      modalContent: '',
     });
   };
 
   return (
     <ModalContext.Provider value={{ modalConfig, setModalConfig, closeModal }}>
       {children}
+
+      <ModalDialog {...modalConfig} onClose={closeModal} />
     </ModalContext.Provider>
   );
 }
