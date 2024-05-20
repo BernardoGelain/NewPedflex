@@ -1,30 +1,30 @@
 import { ProductType } from '@/models/ProductsList';
-import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+import { createSlice, Slice } from '@reduxjs/toolkit';
 
 import { addToCartAction } from './reducers/addToCart';
 import { removeFromCartAction } from './reducers/removeFromCart';
 import { selectUnitTypeAction } from './reducers/selectUnitType';
 import { updateProductTotalValueAction } from './reducers/updateProductTotalValue';
+import { selectPaymentConditionAction } from './reducers/selectPaymentCondition';
+import { CondicoesDisponiveisType } from '@/models/HeaderData';
 
 export type CartSliceState = {
   produtosCarrinho: ProductType[];
-  condicaoPagamento: number;
+  condicaoPagamento: CondicoesDisponiveisType;
 };
 
 const cartSlice: Slice<CartSliceState> = createSlice({
   name: 'cart',
   initialState: {
     produtosCarrinho: [] as ProductType[],
-    condicaoPagamento: 0,
+    condicaoPagamento: {} as CondicoesDisponiveisType,
   },
 
   //reducers para manipular estado
   reducers: {
     addToCart: addToCartAction,
     removeFromCart: removeFromCartAction,
-    selectPaymentCondition: (state, action: PayloadAction<number>) => {
-      state.condicaoPagamento = action.payload;
-    },
+    selectPaymentCondition: selectPaymentConditionAction,
     selectUnitType: selectUnitTypeAction,
     updateProductTotalValue: updateProductTotalValueAction,
   },

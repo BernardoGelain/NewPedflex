@@ -22,15 +22,18 @@ export function AppWrapperContextProvider({ children }: AppWrapperProps) {
   const { headerData } = useFetchAppHeader();
 
   React.useEffect(() => {
-    console.log('zsdasdsa', condicaoPagamento);
-    if (!condicaoPagamento) {
+    if (Object.keys(condicaoPagamento).length == 0) {
       setModalConfig({
         open: true,
         title: 'Escolha uma condição de pagamento',
-        modalContent: <></>,
+        modalContent: (
+          <PaymentConditionModalContent
+            condicoesDisponiveis={headerData?.condicoesDisponiveis ?? []}
+          />
+        ),
       });
     }
-  }, [condicaoPagamento]);
+  }, [setModalConfig, headerData, condicaoPagamento]);
 
   return (
     <AppWrapperContext.Provider value={{}}>

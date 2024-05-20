@@ -1,4 +1,4 @@
-export interface HeaderDataType {
+export type HeaderDataType = {
   dadosCliente: DadosClienteType;
   condicoesDisponiveis: CondicoesDisponiveisType[];
   listasDisponiveis: ListasDisponiveisType[];
@@ -6,9 +6,9 @@ export interface HeaderDataType {
   cdListaMostrar: number;
   cdListaAcesso: number;
   cdCombo: number;
-}
+};
 
-export interface DadosClienteType {
+export type DadosClienteType = {
   cd_pessoa: number;
   nm_pessoa: string;
   nm_fantasia: string;
@@ -21,16 +21,16 @@ export interface DadosClienteType {
   nr_dias_maximo: number;
   vl_limite_credito: string;
   vl_pedido_minimo: string;
-}
+};
 
-export interface CondicoesDisponiveisType {
+export type CondicoesDisponiveisType = {
   cd_condicao: number;
   nm_condicao: string;
   nr_dias: number;
   pr_acrescimo: string;
-}
+};
 
-export interface ListasDisponiveisType {
+export type ListasDisponiveisType = {
   cd_lista_transmissao: number;
   nm_lista_transmissao: string;
   ds_lista_transmissao: string;
@@ -39,4 +39,4 @@ export interface ListasDisponiveisType {
   dt_lista_transmissao: string;
   ds_banner: string;
   ds_banner_reduzido: string;
-}
+};
