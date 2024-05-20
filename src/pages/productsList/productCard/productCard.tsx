@@ -20,77 +20,79 @@ interface ProductCardProps {
   cartInfo: CartProductInfo;
 }
 
-export function ProductCard({ product, cartInfo }: ProductCardProps) {
-  const [unitTypeSelected, setUnitTypeSelected] =
-    React.useState<UnidadesDisponiveisType>(cartInfo.unidadeSelecionada);
-  const dispatch = useAppDispatch();
+export const ProductCard = React.memo(
+  ({ product, cartInfo }: ProductCardProps) => {
+    const [unitTypeSelected, setUnitTypeSelected] =
+      React.useState<UnidadesDisponiveisType>(cartInfo.unidadeSelecionada);
+    const dispatch = useAppDispatch();
 
-  const calculatedValue = useCalculateTotalValue({
-    product,
-    cartInfo,
-    unitTypeSelected,
-  });
+    const calculatedValue = useCalculateTotalValue({
+      product,
+      cartInfo,
+      unitTypeSelected,
+    });
 
-  return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        marginBottom: '20px',
-        alignItems: 'center',
-      }}
-    >
-      <div>
-        <h4>{product.nm_produto}</h4>
-      </div>
-      <div>
-        {product.unidades_disponiveis.map((unitType) => (
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          marginBottom: '20px',
+          alignItems: 'center',
+        }}
+      >
+        <div>
+          <h4>{product.nm_produto}</h4>
+        </div>
+        <div>
+          {product.unidades_disponiveis.map((unitType) => (
+            <button
+              key={unitType.cd_unidade}
+              style={{
+                backgroundColor:
+                  unitTypeSelected.cd_unidade == unitType.cd_unidade
+                    ? 'green'
+                    : 'transparent',
+              }}
+              onClick={() => {
+                setUnitTypeSelected(unitType);
+                dispatch(
+                  selectUnitType({
+                    produto: product,
+                    unidadeSelecionada: unitType,
+                  })
+                );
+              }}
+            >
+              {unitType.ds_unidade}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <button
-            key={unitType.cd_unidade}
-            style={{
-              backgroundColor:
-                unitTypeSelected.cd_unidade == unitType.cd_unidade
-                  ? 'green'
-                  : 'transparent',
-            }}
-            onClick={() => {
-              setUnitTypeSelected(unitType);
+            style={{ padding: '5px 8px' }}
+            onClick={() =>
               dispatch(
-                selectUnitType({
+                addToCart({
                   produto: product,
-                  unidadeSelecionada: unitType,
+                  unidadeSelecionada: unitTypeSelected,
                 })
-              );
-            }}
+              )
+            }
           >
-            {unitType.ds_unidade}
+            +
           </button>
-        ))}
-      </div>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <button
-          style={{ padding: '5px 8px' }}
-          onClick={() =>
-            dispatch(
-              addToCart({
-                produto: product,
-                unidadeSelecionada: unitTypeSelected,
-              })
-            )
-          }
-        >
-          +
-        </button>
-        <span>{cartInfo.quantidade}</span>
-        <button
-          style={{ padding: '5px 8px' }}
-          onClick={() => dispatch(removeFromCart(product))}
-        >
-          -
-        </button>
-      </div>
+          <span>{cartInfo.quantidade}</span>
+          <button
+            style={{ padding: '5px 8px' }}
+            onClick={() => dispatch(removeFromCart(product))}
+          >
+            -
+          </button>
+        </div>
 
-      <div>{formatInputCurrency(calculatedValue)}</div>
-    </div>
-  );
-}
+        <div>{formatInputCurrency(calculatedValue)}</div>
+      </div>
+    );
+  }
+);
