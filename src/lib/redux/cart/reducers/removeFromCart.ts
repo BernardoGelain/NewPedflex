@@ -13,7 +13,11 @@ export const removeFromCartAction = (
 
   const productInCart = findProductInCart(state.produtosCarrinho, produto);
 
-  if (productInCart) {
+  if (!productInCart) {
+    return;
+  }
+
+  if (productInCart && productInCart?.cartInfo.quantidade > 1) {
     productInCart.cartInfo.quantidade -= 1;
     return;
   }
