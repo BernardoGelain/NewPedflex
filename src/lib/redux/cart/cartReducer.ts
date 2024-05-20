@@ -22,7 +22,7 @@ const cartSlice: Slice<CartSliceState> = createSlice({
   reducers: {
     addToCart: addToCartAction,
     removeFromCart: removeFromCartAction,
-    selectPaymentType: (state, action: PayloadAction<number>) => {
+    selectPaymentCondition: (state, action: PayloadAction<number>) => {
       state.condicaoPagamento = action.payload;
     },
     selectUnitType: selectUnitTypeAction,
@@ -35,6 +35,6 @@ export const {
   addToCart,
   removeFromCart,
   selectUnitType,
-  selectPaymentType,
+  selectPaymentCondition,
   updateProductTotalValue,
 } = cartSlice.actions;

@@ -1,8 +1,8 @@
 import { api } from '@/config/api';
-import { PostType } from '@/models/Posts';
+import { HeaderDataType } from '@/models/HeaderData';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchAppHeader = async (): Promise<PostType> => {
+const fetchAppHeader = async (): Promise<HeaderDataType> => {
   const res = await api.get(`/header`);
 
   return res.data;
