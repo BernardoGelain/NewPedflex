@@ -21,7 +21,6 @@ export const useCalculateTotalValue = ({
   const dispatch = useAppDispatch();
 
   const valorPorUnidade = unitTypeSelected.vl_preco_unidade;
-  console.log(valorPorUnidade);
 
   let valorTotal: number = valorPorUnidade || 0;
 
